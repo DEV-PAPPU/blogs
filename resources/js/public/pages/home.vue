@@ -206,48 +206,52 @@
                     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                             aria-labelledby="nav-home-tab">
-                                       <div v-if="men.length"
-                class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10 mx-20">
-                <div v-for="post in men" :key="post.id" class="">
-                    <div class="mb-2">
-                        <div
-                            class="border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden bg-white  shadow-sm hover:shadow-sm">
+                            <div v-if="men.length"
+                                class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10 mx-20">
+                                <div v-for="post in post_all.data" :key="post.id" class="">
+                                    <div class="mb-2">
+                                        <div
+                                            class="border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden bg-white  shadow-sm hover:shadow-sm">
 
-                            <img :src="post.image" class="category-image">
-                            <div class="p-6">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-2"></h2>
-                                <h1 class="title-font text-lg font-medium text-gray-900 mb-1">
-                                    Category name: {{post.title}}
-                                </h1>
-                                <router-link :to="{name: 'post-single', params: {slug: post.slug}}"
-                                    class="btn btn-primary btn-block mt-3">View Post</router-link>
+                                            <img :src="post.image" class="category-image">
+                                            <div class="p-6">
+                                                <h2
+                                                    class="tracking-widest text-xs title-font font-medium text-gray-400 mb-2">
+                                                </h2>
+                                                <h1 class="title-font text-lg font-medium text-gray-900 mb-1">
+                                                    Category name: {{post.title}}
+                                                </h1>
+                                                <router-link :to="{name: 'post-single', params: {slug: post.slug}}"
+                                                    class="btn btn-primary btn-block mt-3">View Post</router-link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <div v-if="women.length"
-                class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10 mx-20">
-                <div v-for="post in women" :key="post.id" class="">
-                    <div class="mb-2">
-                        <div
-                            class="border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden bg-white  shadow-sm hover:shadow-sm">
+                                class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10 mx-20">
+                                <div v-for="post in women" :key="post.id" class="">
+                                    <div class="mb-2">
+                                        <div
+                                            class="border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden bg-white  shadow-sm hover:shadow-sm">
 
-                            <img :src="post.image" class="category-image">
-                            <div class="p-6">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-2"></h2>
-                                <h1 class="title-font text-lg font-medium text-gray-900 mb-1">
-                                    Category name: {{post.title}}
-                                </h1>
-                                <router-link :to="{name: 'post-single', params: {slug: post.slug}}"
-                                    class="btn btn-primary btn-block mt-3">View Post</router-link>
+                                            <img :src="post.image" class="category-image">
+                                            <div class="p-6">
+                                                <h2
+                                                    class="tracking-widest text-xs title-font font-medium text-gray-400 mb-2">
+                                                </h2>
+                                                <h1 class="title-font text-lg font-medium text-gray-900 mb-1">
+                                                    Category name: {{post.title}}
+                                                </h1>
+                                                <router-link :to="{name: 'post-single', params: {slug: post.slug}}"
+                                                    class="btn btn-primary btn-block mt-3">View Post</router-link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             Et et consectetur ipsum labore excepteur est proident excepteur ad velit
@@ -366,6 +370,7 @@ import axios from 'axios'
               category:'',
               men:'',
               women:'',
+              post_all:''
           }
       },
 
@@ -374,10 +379,16 @@ import axios from 'axios'
 
 
          posts_of_catehory(){
-
              axios.get('/api/post/of/category').then(response=>{
                  this.men = response.data[0]
                  this.women = response.data[1]
+            })
+
+         },
+
+         posts_of_public(){
+             axios.get('/api/public/posts').then(response=>{
+                  this.post_all = response.data
             })
 
          }
@@ -390,6 +401,7 @@ import axios from 'axios'
             axios.get('/api/home/category').then(response=>{
                 this.category = response.data
             }),
+            this.posts_of_public();
             this.posts_of_catehory();
         }
 

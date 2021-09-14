@@ -123,8 +123,6 @@ class PublicBlogController extends Controller
 
     public function postsearch($searchdata)
     {
-
-
         $posts = Post::select("*")
         ->where('status', 0)
         ->where('title','LIKE','%'.$searchdata.'%')

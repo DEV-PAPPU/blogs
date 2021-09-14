@@ -6947,13 +6947,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       category: '',
       men: '',
-      women: ''
+      women: '',
+      post_all: ''
     };
   },
   methods: {
@@ -6964,15 +6969,23 @@ __webpack_require__.r(__webpack_exports__);
         _this.men = response.data[0];
         _this.women = response.data[1];
       });
+    },
+    posts_of_public: function posts_of_public() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/public/posts').then(function (response) {
+        _this2.post_all = response.data;
+      });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     console.log('Home Component mounted.');
     axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/home/category').then(function (response) {
-      _this2.category = response.data;
-    }), this.posts_of_catehory();
+      _this3.category = response.data;
+    }), this.posts_of_public();
+    this.posts_of_catehory();
   }
 });
 
@@ -92681,7 +92694,7 @@ var render = function() {
                             staticClass:
                               "grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10 mx-20"
                           },
-                          _vm._l(_vm.men, function(post) {
+                          _vm._l(_vm.post_all.data, function(post) {
                             return _c("div", { key: post.id }, [
                               _c("div", { staticClass: "mb-2" }, [
                                 _c(
@@ -92713,9 +92726,9 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                Category name: " +
+                                              "\n                                                Category name: " +
                                                 _vm._s(post.title) +
-                                                "\n                            "
+                                                "\n                                            "
                                             )
                                           ]
                                         ),
@@ -92798,9 +92811,9 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                Category name: " +
+                                              "\n                                                Category name: " +
                                                 _vm._s(post.title) +
-                                                "\n                            "
+                                                "\n                                            "
                                             )
                                           ]
                                         ),
