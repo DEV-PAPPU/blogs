@@ -130,5 +130,4 @@ class PublicBlogController extends Controller
 
         return response()->json($posts,200);
     }
-
 }
