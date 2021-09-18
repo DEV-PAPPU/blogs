@@ -30,16 +30,22 @@
                                         </td>
 
                                         <td> {{ task.created_at | dateformat}}</td>
-                                        <td style="width: 220px">
-                                            <router-link :to="{name: 'task-show', params: {id: task.id}}"
+                                        <td class="d-flex" style="width: 220px">
+                                            <div v-if="user.read == 'true' || user.role == '0'"  class="view action-btn">
+                                                <router-link :to="{name: 'task-show', params: {id: task.id}}"
                                                 class="btn btn-primary btn-sm">
                                                 <i class="las la-eye icon"></i></router-link>
-                                            <router-link :to="{name: 'task-edit', params: {id: task.id}}"
+                                            </div>
+                                            <div v-if="user.edit == 'true' || user.role == '0'" class="edit action-btn">
+                                                <router-link :to="{name: 'task-edit', params: {id: task.id}}"
                                                 class="btn btn-primary btn-sm"><i class="las la-pen-square icon"></i>
                                             </router-link>
-                                            <a @click.prevent="Deletetask(task)" href="#" class="btn btn-danger btn-sm">
+                                            </div>
+                                            <div v-if="user.destroy == 'true' || user.role == '0'" class="delete action-btn">
+                                                <a @click.prevent="Deletetask(task)" href="#" class="btn btn-danger btn-sm">
                                                 <i class="las la-trash-alt icon"></i>
                                             </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <tfoot>
@@ -68,7 +74,8 @@ export default {
 
    data() {
        return {
-           tasks:{}
+           tasks:{},
+           user:{},
        }
    },
 
@@ -76,7 +83,7 @@ export default {
 
           // Our method to GET results from a Laravel endpoint
         loadTasks(page = 1) {
-            axios.get('/api/task?page=' + page)
+            axios.get('/api/tasks?page=' + page)
                 .then(response => {
                     this.tasks = response.data;
                 });
@@ -125,6 +132,11 @@ export default {
 
         mounted(){
         this.loadTasks();
+
+         axios.get('/api/auth/user/data')
+            .then(response =>{
+                this.user = response.data;
+            })
         },
 
 }
@@ -138,6 +150,10 @@ export default {
     font-size: 21px;
     margin-top: 5px;
     text-align: center;
+}
+
+.action-btn{
+    margin: 0px 5px;
 }
 
 </style>

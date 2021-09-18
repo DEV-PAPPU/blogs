@@ -1,13 +1,12 @@
 <template>
     <div class="">
-        <div class="">
             <form @submit.prevent="updatepost">
                 <div class="product">
                     <div class="row justify-content-center">
                         <div class="col-8">
                             <div class="card card-primary">
                                 <div class="card-header">
-
+                                        <h6>Edit User</h6>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
@@ -42,6 +41,29 @@
 
                                         </select>
                                     </div>
+
+                                    <div class="user-action">
+                                        <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Read</th>
+                                        <th>Write</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" v-model="form.read" ></td>
+                                        <td><input type="checkbox" v-model="form.write" ></td>
+                                        <td><input type="checkbox" v-model="form.edit" ></td>
+                                        <td><input type="checkbox" v-model="form.destroy"></td>
+                                    </tr>
+
+                                </tbody>
+                                        </table>
+                                    </div>
                                      <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
@@ -50,7 +72,6 @@
                     </div>
                 </div>
             </form>
-        </div>
     </div>
 </template>
 
@@ -64,6 +85,10 @@
          email: '',
          email: '',
           role: '',
+          read: '',
+          write: '',
+          edit: '',
+          destroy: '',
            _method:'Put',
 
       }),
@@ -73,6 +98,8 @@
     methods: {
        updatepost(){
             let id = this.$route.params.id;
+
+            // alert(this.form.read)
             this.form.post('/api/users/'+id).then(()=>{
 
                     Toast.fire({
@@ -88,6 +115,10 @@
                 this.form.name = response.data.name;
                 this.form.email = response.data.email;
                 this.form.role = response.data.role;
+                this.form.read = response.data.read;
+                this.form.write = response.data.write;
+                this.form.edit = response.data.edit;
+                this.form.destroy = response.data.destroy;
             });
         },
 

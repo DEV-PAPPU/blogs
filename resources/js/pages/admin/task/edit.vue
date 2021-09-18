@@ -91,7 +91,8 @@ import { VueEditor } from "vue2-editor";
           title: '',
           status: '',
           topic:'',
-          detail: ''
+          detail: '',
+        //   _method:'Put',
          },
          errors:{}
       }),
@@ -103,9 +104,9 @@ import { VueEditor } from "vue2-editor";
     methods: {
 
         upDateTask(){
-
             let id = this.$route.params.id;
-            axios.put(`/api/task/${id}`, this.form).then(() => {
+            axios.post('/api/task/update/'+id,this.form).then(() => {
+            // axios.put(`/api/task/${id}`, this.form).then(() => {
                  this.form = ''
                  Toast.fire({
                     icon: 'success',
@@ -115,8 +116,10 @@ import { VueEditor } from "vue2-editor";
         },
 
         loadTask(){
+            // let id = 9;
             let id = this.$route.params.id;
-            axios.get(`/api/task/${id}/edit`).then(response => {
+            axios.get(`/api/task/edit/${id}`).then(response => {
+            // axios.get(`/api/task/${id}/edit`).then(response => {
                 this.form.title = response.data.title;
                 this.form.status = response.data.status;
                 this.form.topic = response.data.topic;

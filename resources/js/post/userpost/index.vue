@@ -111,6 +111,9 @@
                 </button>
 
             </form>
+            <div v-if="user.read == 'true' || user.role == '0'">
+                {{user}}
+            </div>
         </div>
 
     </div>
@@ -141,7 +144,6 @@ export default {
         loadUser(){
             axios.get('/api/auth/user/data')
             .then(response =>{
-                console.log(response);
                 this.user = response.data;
             })
             .finally(() => this.Isloader = false)

@@ -23,13 +23,54 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $read = "";
+        $write = "";
+        $edit = "";
+        $destroy = "";
+
+        if ($request->read == "true"){
+            $read = "true";
+        } else {
+            $read = "";
+        }
+
+        if ($request->write == "true"){
+            $write = "true";
+        } else {
+            $write = "";
+        }
+
+        if ($request->edit == "true"){
+            $edit = "true";
+        } else {
+            $edit = "";
+        }
+
+        if ($request->destroy == "true"){
+            $destroy = "true";
+        } else {
+            $destroy = "";
+        }
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
-            'password' => Hash::make($request->password),
-
+            'read' => $read,
+            'write' => $write,
+            'edit' => $edit,
+            'destroy' => $destroy,
         ]);
+
+        // $user->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'role' => $request->role,
+        //     'read' => $request->read,
+        //     'write' => $request->write,
+        //     'edit' => $request->edit,
+        //     'destroy' => $request->destroy,
+        // ]);
 
         return response()->json($user, 200);
     }

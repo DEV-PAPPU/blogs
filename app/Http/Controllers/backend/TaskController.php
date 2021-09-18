@@ -20,15 +20,7 @@ class TaskController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -78,8 +70,9 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Task $id)
     {
+        $task = $id;
         return response()->json($task, 200);
 
     }
@@ -91,9 +84,12 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update($id, Request $request)
+    // public function update(Request $request, Task $task)
     {
-        // return $task;
+        return $request;
+
+        $task =  Task::findOrFail($id);
 
         $task->update([
            'title' => $request->title,

@@ -31,7 +31,18 @@ Route::resource('post', PostController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('subcategory', SubCategoryController::class);
 Route::resource('product', ProductController::class);
-Route::resource('task', TaskController::class);
+// Route::resource('task', TaskController::class);
+
+
+
+Route::get('tasks',[TaskController::class,'index']);
+Route::post('task/create',[TaskController::class,'store']);
+Route::get('task/edit/{id}',[TaskController::class,'edit']);
+
+Route::post('task/update/{$id}',[TaskController::class,'update']);
+
+
+
 
 //Pos
 Route::resource('pos', PosController::class);

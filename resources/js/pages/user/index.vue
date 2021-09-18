@@ -24,21 +24,34 @@
                                         <td> {{ user.name }} </td>
                                         <td> {{ user.email }} </td>
                                         <td>
-                                            <span v-if="user.role == 0" class="badge badge-success">Admin</span>
+                                            <span v-if="user.role == 0" class="badge badge-success">Super-Admin</span>
+                                            <span v-else-if="user.role == 'admin'" class="badge badge-success">Sub-Admin</span>
                                             <span v-else class="badge badge-primary">Blogger</span>
                                         </td>
                                         <td> {{ user.created_at | dateformat}}</td>
 
-                                        <td style="width: 170px">
-                                            <router-link :to="{name: 'edit-user', params: {id: user.id}}"
+                                        <td class="d-flex" style="width: 200px">
+
+                                            <a href="#" class="btn btn-primary btn-sm">
+                                                <i class="las la-eye icon"></i></a>
+
+                                            <router-link v-if="auth.edit == 'true' || auth.role == '0'"
+                                                :to="{name: 'edit-user', params: {id: user.id}}"
                                                 class="btn btn-primary btn-sm">
                                                 <i class="las la-pen-square"></i>
                                             </router-link>
-                                            <a @click.prevent="Deleteuser(user)" v-if="user.role == 1" href="#"
-                                                class="btn btn-danger btn-sm"><i class="las la-trash-alt"></i></a>
-                                            <a v-else href="#" @click="adminDelete()" class="btn btn-danger btn-sm">
-                                                <i class="las la-trash-alt"></i>
-                                            </a>
+
+                                            <div v-if="auth.destroy == 'true' || auth.role == '0'" class="delete">
+
+                                                <a @click.prevent="Deleteuser(user)" v-if="user.role == 1" href="#"
+                                                    class="btn btn-danger btn-sm"><i class="las la-trash-alt"></i>
+                                                </a>
+
+                                                <a v-else href="#" @click="adminDelete()" class="btn btn-danger btn-sm">
+                                                    <i class="las la-trash-alt"></i>
+                                                </a>
+
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -66,6 +79,7 @@ export default {
    data() {
        return {
            users:{},
+           auth:{}
        }
    },
     methods: {
@@ -112,6 +126,11 @@ export default {
 
         mounted(){
         this.loadUser();
+
+         axios.get('/api/auth/user/data')
+            .then(response =>{
+                this.auth = response.data;
+            })
         },
 
 

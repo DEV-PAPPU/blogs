@@ -19,7 +19,7 @@ class Admin
         $role = Auth::user()->role;
         // 0 for admin
         // 1 for user
-        if(Auth::check() && $role == '0'){
+        if(Auth::check() && $role == '0' || Auth::check() && $role == 'admin'){
 
             return $next($request);
         }
