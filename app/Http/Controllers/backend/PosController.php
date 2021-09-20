@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 use App\Models\Pos;
+use App\Models\Product;
 use App\Models\PosSellItems;
 use App\Http\Controllers\Controller;
 Use Auth;
@@ -10,6 +11,7 @@ use Stripe\Customer;
 use Stripe\ApiOperations\Create;
 use Stripe\Charge;
 use Stripe\Token;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class PosController extends Controller
@@ -241,4 +243,45 @@ class PosController extends Controller
         ]);
 
     }
+
+    public function session_store(Request $request)
+    {
+        $id = $request->id; // Getting product id
+
+        $cart = Session::get('postitem');
+
+        // if cart is empty then this the first product
+        if(!$cart){
+              $cart = [
+
+                 $id => [
+                     "name" => $request->title,
+                     "qty" => 1
+                 ]
+
+              ];
+          }
+
+          // if cart not empty then check if this product exist then increment quantity
+
+            if(isset($cart[$id])){
+
+                $qty =  $cart[$id]['qty'];
+                $res = $qty++;
+
+            }
+
+
+            // if item not exist in cart then add to cart with quantity = 1
+            $cart[$id] = [
+                "name" => $request->title,
+                "qty" => 1
+            ];
+
+          Session::put('postitem', $cart);
+          return $cart;
+
+    }
+
+
 }

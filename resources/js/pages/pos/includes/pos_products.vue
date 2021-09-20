@@ -278,26 +278,12 @@ import adduserfrom from '../../pos/includes/adduser.vue'
 
             due(){
                  return this.total - this.pay
-            },
-
-            filterlist(){
-                return this.post_list.filter((item) => {
-
-               if( item.id = this.remove.id ){
-                    item = ''
-                }
-                })
             }
 
         },
 
         mounted() {
             this.loadUser();
-             const script = document.createElement("script");
-            script.src =
-            "https://www.paypal.com/sdk/js?client-id=AdGH9Y0lFtkfPAw2gFkQRa12l1YJKEiZsQq89pnZxPNw3H2I_Bu4Uw0uUomQU0xd4jZQiv8P5DkSAuE1";
-            script.addEventListener("load", this.setLoaded);
-            document.body.appendChild(script);
         }
     }
 </script>

@@ -48,7 +48,7 @@
     methods: {
         loadTask(){
             let id = this.$route.params.id;
-            axios.get(`/api/task/${id}`).then(response => {
+            axios.get(`/api/task/show/${id}`).then(response => {
                 this.task = response.data;
             });
         },

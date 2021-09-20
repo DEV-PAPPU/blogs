@@ -108,7 +108,7 @@ import { VueEditor } from "vue2-editor";
         methods: {
 
          addTask(){
-            axios.post('/api/task', this.form).then(response => {
+            axios.post('/api/task/store', this.form).then(response => {
                 console.log(response)
                 this.errors = ''
                 this.form = ''

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Support\Facades\Session;
 class TaskController extends Controller
 {
         /**
@@ -20,8 +21,6 @@ class TaskController extends Controller
 
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -30,6 +29,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
 
        $this->validate($request ,[
 
@@ -58,8 +58,9 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Task $id)
     {
+        $task = $id;
         return response()->json($task, 200);
 
     }
@@ -85,9 +86,7 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update($id, Request $request)
-    // public function update(Request $request, Task $task)
     {
-        return $request;
 
         $task =  Task::findOrFail($id);
 
@@ -114,4 +113,47 @@ class TaskController extends Controller
 
         return response()->json($task, 200);
     }
+
+    public function session_store(Request $request)
+    {
+        $id = $request->id; // Getting product id
+
+        $cart = Session::get('newcart');
+
+        // if cart is empty then this the first product
+        if(!$cart){
+              $cart = [
+
+                 $id => [
+                     "name" => $request->title,
+                     "qty" => 1
+                 ]
+
+              ];
+          }
+
+          // if cart not empty then check if this product exist then increment quantity
+
+            if(isset($cart[$id])){
+
+                $qty =  $cart[$id]['qty'];
+
+                $res = $qty++;
+
+                return $res;
+
+            }
+
+
+            // if item not exist in cart then add to cart with quantity = 1
+            $cart[$id] = [
+                "name" => $request->title,
+                "qty" => 1
+            ];
+
+
+          Session::put('newcart', $cart);
+          return $cart;
+    }
+
 }

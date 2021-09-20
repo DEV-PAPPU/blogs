@@ -63,6 +63,8 @@ import Task_Add from '../pages/admin/task/create.vue'
 import Task_Edit from '../pages/admin/task/edit.vue'
 import Task_Show from '../pages/admin/task/show.vue'
 
+import Task_Draggable from '../pages/admin/task/draggable.vue'
+
 const routes = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
@@ -239,6 +241,11 @@ const routes = new VueRouter({
             path: '/admin/task/show/:id',
             component: Task_Show,
             name: 'task-show',
+        },
+        {
+            path: '/admin/task/draggable',
+            component: Task_Draggable,
+            name: 'task-draggable',
         },
         {
             path: '/post/category/:slug',

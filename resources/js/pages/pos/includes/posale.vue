@@ -23,6 +23,8 @@
                                                         {{product.title | trimproduct}}
                                                     </p>
                                                     <a href="#"  @click="addproduct(product)" class="btn btn-primary btn-block mt-3">Add</a>
+
+                                                    <a href="#"  @click="addSession(product)" class="btn btn-primary btn-block mt-3">Session</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,6 +66,15 @@ import product from '../../pos/includes/pos_products.vue'
                 .then(response => {
                     this.products = response.data;
              });
+        },
+
+        addSession(product){
+
+          axios.post('/api/pos/session', product)
+                .then(() => {
+                    console.log('ok')
+             });
+
         },
 
          addproduct(product) {

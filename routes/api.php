@@ -34,13 +34,11 @@ Route::resource('product', ProductController::class);
 // Route::resource('task', TaskController::class);
 
 
-
 Route::get('tasks',[TaskController::class,'index']);
-Route::post('task/create',[TaskController::class,'store']);
+Route::post('task/store',[TaskController::class,'store']);
 Route::get('task/edit/{id}',[TaskController::class,'edit']);
-
-Route::post('task/update/{$id}',[TaskController::class,'update']);
-
+Route::put('task/update/{id}',[TaskController::class,'update']);
+Route::get('task/show/{id}',[TaskController::class,'show']);
 
 
 
@@ -48,6 +46,9 @@ Route::post('task/update/{$id}',[TaskController::class,'update']);
 Route::resource('pos', PosController::class);
 Route::post('/pos/search',[PosController::class,'Search']);
 Route::post('/pos/add/user',[PosController::class,'Search']);
+
+
+Route::post('pos/session',[PosController::class,'session_store']);
 
 //Post Comment
 Route::resource('comment', PostCommentController::class);
