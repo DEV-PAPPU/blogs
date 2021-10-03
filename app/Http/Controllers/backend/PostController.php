@@ -40,7 +40,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
 
             //   return $request->image;
         // return Auth::user()->id;
@@ -53,11 +52,13 @@ class PostController extends Controller
 
            ]);
 
+           $user_id = 1;
            $post = Post::Create([
                'title' => $request->title,
                'slug' =>  Str::slug($request->title),
-               'user_id' => Auth::user()->id,
                'category_id' => $request->category_id,
+               'user_id' => $user_id,
+            //    'user_id' => Auth::user()->id,
                'description' => $request->description,
 
            ]);

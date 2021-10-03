@@ -22,9 +22,8 @@
                                                         $ {{product.price}} <br>
                                                         {{product.title | trimproduct}}
                                                     </p>
-                                                    <a href="#"  @click="addproduct(product)" class="btn btn-primary btn-block mt-3">Add</a>
-
-                                                    <a href="#"  @click="addSession(product)" class="btn btn-primary btn-block mt-3">Session</a>
+                                                     <button @click="addproduct(product)" class="btn btn-primary btn-block mt-3">Add</button>
+                                                    <!-- <a href="#"  @click="addSession(product)" class="btn btn-primary btn-block mt-3">Session</a> -->
                                                 </div>
                                             </div>
                                         </div>

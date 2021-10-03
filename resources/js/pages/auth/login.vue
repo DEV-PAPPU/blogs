@@ -1,27 +1,24 @@
 <template>
-  <div>
       <div class="container">
           <div class="py-5">
               <div class="row">
                   <div class="col-md-6 offset-3">
                     <div class="card card-default">
                         <div class="card-header">
-                           <h4> Login</h4>
+                           <h6> Login</h6>
                         </div>
                         <div class="card-body">
                             <form action="post" @click.prevent="login()">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" v-model="loginForm.email" :class="{'is-invalid': loginForm.errors.has('email')}" name="email" class="form-control" placeholder="Enter your email">
-                                    <span :form="loginForm" field="email"></span>
+                                    <input type="text" v-model="loginForm.email" class="form-control" placeholder="Enter your email">
                                 </div>
                                 <div class="form-group">
                                      <label for="password">Password</label>
-                                    <input type="password" v-model="loginForm.password" :class="{'is-invalid': loginForm.errors.has('password')}" name="password" class="form-control" placeholder="Enter your password">
-                                    <span :form="loginForm" field="password"></span>
+                                    <input type="password" v-model="loginForm.password" class="form-control" placeholder="Enter your password">
                                 </div>
                                 <div class="form-group">
-                                   <button type="submit" :disabled="loginForm.busy"  class="btn btn-success px-4">Login</button>
+                                   <button type="submit" class="btn btn-success px-4">Login</button>
                                 </div>
                             </form>
                         </div>
@@ -33,43 +30,27 @@
               </div>
           </div>
       </div>
-  </div>
 </template>
 
 <script>
-import Form from 'vform'
+import axios from 'axios';
 export default {
     data(){
        return{
-           loginForm: new Form({
+           loginForm: {
                 email:'',
                 password:'',
-            }),
+            },
        }
     },
     methods:{
          login(){
-            this.loginForm.post('/login');
+            axios.post('/login',this.loginForm );
             this.$router.push({name:'user-dashboard'});
-            this.$store.dispatch("authUser")
-
+            this.$store.commit('SET_AUTHENTICATED', true);
+             // set user-data on local storage
+             localStorage.setItem('auth',true);
         },
-
-        // await this.getUserData();
-        // async getUserData(){
-        //     await axios.get('/api/auth/user/data').then(response =>{
-        //         let user = response.data;
-        //         // this.$store.commit('SET_USER', user);
-        //         // set user-data on local storage
-        //         localStorage.setItem('authuser', JSON.stringify(user));
-        //         this.$store.commit('SET_AUTHENTICATED',true);
-        //         // set data on local storage
-        //         // localStorage.setItem('auth',true);
-        //     });
-        // },
     },
-    mounted(){
-
-    }
 }
 </script>

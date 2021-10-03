@@ -18,7 +18,7 @@
                             </div>
                             <br>
 
-                            <div style="margin-top: 20px;" class="d-flex">
+                            <div style="margin-top: 20px;" class="d-flex mb-3">
                                 <input id="image" @change="onImageChange" type="file"  class="form-control-file">
                                 <div style="width:80px border-radius: 5px;">
                                     <img :src="showimg" class="img-fluid" />

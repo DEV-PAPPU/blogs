@@ -7,7 +7,7 @@
         <div class="card card-primary">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Product Info</h3>
-                <a href="#" @click="addUser()" class="btn btn-success btn-sm">Add User</a>
+                <a href="javascript:void(0);" @click="addUser()" class="btn btn-success btn-sm">Add User</a>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -28,20 +28,20 @@
                             <td style="width: 50px">
 
                                 <div class="d-flex">
-                                    <a @click="decrement(product)" href="#" class="btn btn-danger btn-sm">
+                                    <a @click="decrement(product)" href="javascript:void(0);" class="btn btn-danger btn-sm">
                                         <i class="las la-caret-left"></i>
                                     </a>
                                     <input type="text" @change="changeqty(product)" :value="product.qty" readonly
                                         class="qty">
 
-                                    <a @click="increment(product)" href="#" class="btn btn-danger btn-sm">
+                                    <a @click="increment(product)" href="javascript:void(0);" class="btn btn-danger btn-sm">
                                         <i class="las la-caret-right"></i>
                                     </a>
                                 </div>
 
                             </td>
                             <td>$ {{ product.price * product.qty }} </td>
-                            <td><a @click="removeitem(product)" href="#" class="btn btn-danger btn-sm">
+                            <td><a @click="removeitem(product)" href="javascript:void(0);" class="btn btn-danger btn-sm">
                                     <i class="las la-trash-alt icon"></i>
                                 </a></td>
                         </tr>

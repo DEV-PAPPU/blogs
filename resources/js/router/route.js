@@ -1,33 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-// User List
-import User_list from '../pages/user/index.vue'
-import User_Edit from '../pages/user/edit.vue'
-
-import Admin_home from '../pages/admin/index.vue'
-//Blogs Components
-import Post_Lists from '../post/post/index.vue'
-import Post_Create from '../post/post/create.vue'
-import Post_Edit from '../post/post/edit.vue'
-
-//Category Components
-import Category_lists from '../post/category/index.vue'
-import Category_Create from '../post/category/create.vue'
-import Category_Edit from '../post/category/edit.vue'
-
+import Admin from './admin';
 
 import Category_single from '../public/post/single_category.vue'
-
 
 // User Blog CRUD
 import User_Post_Lists from '../post/userpost/index.vue'
 import User_Post_Edit from '../post/userpost/edit.vue'
-
-
-//Post Comments
-import Post_Comment from '../components/comment/index.vue'
-import Post_Comment_Edit from '../components/comment/edit.vue'
 
 
 //Public Post
@@ -44,9 +24,6 @@ import Register from '../pages/auth/register.vue'
 import Password_Reset_Email_Sent from '../pages/auth/email.vue'
 import Reset_Password from '../pages/auth/passwordchange.vue'
 
-
-// POS Route
-
 //Pos- Components
 import Create_Product from '../pages/pos/product/create.vue'
 import Product_List from '../pages/pos/product/index.vue'
@@ -57,78 +34,22 @@ import Pos_Single_Sale from '../pages/pos/includes/pos_single_sale.vue'
 import Search from '../components/form.vue'
 
 
-// Task management
-import Task_Index from '../pages/admin/task/index.vue'
-import Task_Add from '../pages/admin/task/create.vue'
-import Task_Edit from '../pages/admin/task/edit.vue'
-import Task_Show from '../pages/admin/task/show.vue'
 
-import Task_Draggable from '../pages/admin/task/draggable.vue'
 
 const routes = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
     routes: [
+        ...Admin,
+        {
+            path: "/:catchAll(.*)",
+            name: "NotFound",
+            component: () => import("../components/404/NotFound.vue")
+          },
         {
             path: '/',
             component: website_home,
             name: 'home',
-        },
-        {
-            path: '/admin',
-            component: Admin_home,
-            name: 'admin-home',
-        },
-        {
-            path: '/admin/users',
-            component: User_list,
-            name: 'all-users',
-        },
-        {
-            path: '/admin/users/edit/:id',
-            component: User_Edit,
-            name: 'edit-user',
-        },
-        {
-            path: '/admin/post/lists',
-            component: Post_Lists,
-            name: 'all-post',
-        },
-        {
-            path: '/admin/post/create',
-            component: Post_Create,
-            name: 'post-create',
-        },
-
-        {
-            path: '/admin/post/edit/:id',
-            component: Post_Edit,
-            name: 'post-edit',
-        },
-        {
-            path: '/admin/category/create',
-            component: Category_Create,
-            name: 'create-category',
-        },
-        {
-            path: '/admin/category/lists',
-            component: Category_lists,
-            name: 'all-category',
-        },
-        {
-            path: '/admin/category/edit/:id',
-            component: Category_Edit,
-            name: 'category-edit',
-        },
-        {
-            path: '/admin/comments',
-            component: Post_Comment,
-            name: 'post-comments',
-        },
-        {
-            path: '/admin/comments/edit/:id',
-            component:Post_Comment_Edit,
-            name: 'post-comments-edit',
         },
 
            //singup
@@ -221,32 +142,7 @@ const routes = new VueRouter({
             component: Search,
             name: 'search',
         },
-        //  Task management
-        {
-            path: '/admin/task/management',
-            component: Task_Index,
-            name: 'admin-task',
-        },
-        {
-            path: '/admin/task/add',
-            component: Task_Add,
-            name: 'admin-task-add',
-        },
-        {
-            path: '/admin/task/edit/:id',
-            component: Task_Edit,
-            name: 'task-edit',
-        },
-        {
-            path: '/admin/task/show/:id',
-            component: Task_Show,
-            name: 'task-show',
-        },
-        {
-            path: '/admin/task/draggable',
-            component: Task_Draggable,
-            name: 'task-draggable',
-        },
+
         {
             path: '/post/category/:slug',
             component: Category_single,

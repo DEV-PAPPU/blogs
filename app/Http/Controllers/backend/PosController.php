@@ -266,11 +266,11 @@ class PosController extends Controller
 
             if(isset($cart[$id])){
 
+                return 'Already added';
                 $qty =  $cart[$id]['qty'];
-                $res = $qty++;
+                $qty++;
 
             }
-
 
             // if item not exist in cart then add to cart with quantity = 1
             $cart[$id] = [

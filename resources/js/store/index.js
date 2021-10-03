@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex'
 Vue.use(Vuex)
 import createPersistedState from "vuex-persistedstate";
-import router from '../router/route'
+// import router from '../router/route'
 const store = new Vuex.Store({
     plugins: [createPersistedState()],
     state: {
@@ -26,19 +26,16 @@ const store = new Vuex.Store({
     },
 
 
-    actions:{
-        authUser ({ commit, dispatch }) {
-          return axios.get('/api/auth/user/data').then((response) => {
-              commit('SET_AUTHENTICATED', true)
-              let user = response.data;
-              console.log("working this now")
-             // set user-data on local storage
-             localStorage.setItem('auth',true);
-             localStorage.setItem('authuser', JSON.stringify(user));
-
-          })
-        },
-      },
+    // actions:{
+    //     authUser ({ commit, dispatch }) {
+    //       return axios.get('/api/auth/user/data').then((response) => {
+    //           commit('SET_AUTHENTICATED', true)
+    //           let user = response.data;
+    //          // set user-data on local storage
+    //          localStorage.setItem('auth',true);
+    //       })
+    //     },
+    //   },
 
 
   })
