@@ -24,8 +24,8 @@ class PostCommentController extends Controller
         return 'ok';
         $post_id = $id;
         $show_post_comments = CommentPost::select('*')
-         ->where('post_id', '=', $post_id)
-         ->where('status', '=', 0)
+         ->where('post_id', $post_id)
+         ->where('status', 0)
          ->get();
 
          return response()->json($show_post_comments, 200);
@@ -49,7 +49,7 @@ class PostCommentController extends Controller
      */
     public function store(Request $request)
     {
-        return ($request->all());
+        // return ($request->all());
 
         $this->validate($request ,[
 
@@ -68,7 +68,7 @@ class PostCommentController extends Controller
                'rating' => $request->rating,
            ]);
 
-           return response()->json($comment, 200);
+           return response()->json(['sucess' => 'Your comment now pending'], 200);
 
     }
 

@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <label for="comment">comment</label> <br>
-                            <textarea v-model="form.comment" name="comment" required id="summernote"
+                            <textarea v-model="form.comment" class="w-full border border-gray" name="comment" required id="summernot"
                                 style="height: 200px;"></textarea>
                         </div>
 
@@ -57,15 +57,6 @@ import axios from 'axios';
     components: {
   StarRating
 },
-    // computed:{
-    //     form(){
-    //         let form = new FormData
-    //         form.append('name',this.name)
-    //         form.append('email',this.email)
-    //         form.append('comment',this.comment)
-    //         form.append('post_id',this.post_id)
-    //     }
-    // },
     methods: {
 
         comment(){

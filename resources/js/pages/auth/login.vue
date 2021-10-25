@@ -46,9 +46,9 @@ export default {
     methods:{
          login(){
             axios.post('/login',this.loginForm );
-            this.$router.push({name:'user-dashboard'});
-            this.$store.commit('SET_AUTHENTICATED', true);
-             // set user-data on local storage
+              this.$router.push({name:'user-dashboard'});
+              this.$store.commit('SET_AUTHENTICATED', true);
+              // set user-data on local storage
              localStorage.setItem('auth',true);
         },
     },

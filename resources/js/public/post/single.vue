@@ -1,17 +1,17 @@
 <template>
-    <div class="site-content">
+    <div class="site-content lg:mx-20 mt-20 mx-10">
        <div v-if="Isloader == true" class="loader">
            <preloader></preloader>
         </div>
 
-        <div v-else class="blogs site-padding">
-        <div class="grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2 gap-10">
+        <div v-else class="">
+        <div class="lg:grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2 gap-10">
 
             <div class="post-detail">
                 <div class="post-image">
                     <img :src="post.image" class="blog-image">
                 </div>
-                <div class="date flex bg-white px-3 py-2 mt-3 rounded-sm shadow-sm border-dotted border-4 border-blue-1000">
+                <div class="date lg:flex md:flex bg-white px-3 py-2 mt-3 rounded-sm shadow-sm border-dotted border-4 border-blue-1000">
                     <div class="flex">
                         <p class="mt-3">Post Publish Date : {{ post.created_at | dateformat}}</p>
                         <p class="mt-3 ml-5">View : {{ post.view_count}} Times</p>
@@ -34,7 +34,7 @@
                     <comment :post_id="post.id" />
                 </div>
 
-                <div class="mt-10 show-comment">
+                <div class="my-10 show-comment">
                     <showcomment :comments="comments" />
                 </div>
             </div>

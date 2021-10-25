@@ -31,7 +31,6 @@ import Product_Edit from '../pages/pos/product/edit.vue'
 import Product_Sale from '../pages/pos/includes/posale.vue'
 import Pos_Sale_Data from '../pages/pos/includes/sale_items.vue'
 import Pos_Single_Sale from '../pages/pos/includes/pos_single_sale.vue'
-import Search from '../components/form.vue'
 
 
 
@@ -42,16 +41,10 @@ const routes = new VueRouter({
     routes: [
         ...Admin,
         {
-            path: "/:catchAll(.*)",
-            name: "NotFound",
-            component: () => import("../components/404/NotFound.vue")
-          },
-        {
             path: '/',
             component: website_home,
             name: 'home',
         },
-
            //singup
         {
             path: '/user/sign-up',
@@ -137,17 +130,18 @@ const routes = new VueRouter({
             component: Single_Post,
             name: 'post-single',
         },
-        {
-            path: '/admin/search',
-            component: Search,
-            name: 'search',
-        },
 
         {
             path: '/post/category/:slug',
             component: Category_single,
             name: 'public-category-single',
         },
+
+        {
+            path: "/:catchAll(.*)",
+            name: "NotFound",
+            component: () => import("../components/404/NotFound.vue")
+          },
 
     ]
 });

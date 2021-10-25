@@ -1,27 +1,25 @@
 <template>
 
-    <div class="main-comtent">
+    <div class="main-comtent lg:mx-20 mx-10">
 
         <div v-if="Isloader == true" class="loader">
             <preloader></preloader>
         </div>
 
         <div v-else class="">
-            <div class="search-shorting mt-5 mx-20">
-                <div class="flex justify-between bg-white items-centerrounded-sm shadow-sm px-3">
+            <div class="relative  search-shorting mt-5">
+                <div class="lg:flex justify-between bg-white items-centerrounded-sm shadow-sm px-3 py-6 align-items-center">
 
-                    <div class="search mt-3 flex">
+                    <div class="search flex form">
                         <div class="form">
                             <form>
                                 <input type="text" v-model="search"
-                                    class="bg-gray-200 rounded-sm mr-2 text-sm px-3 py-1" placeholder="Search...">
+                                    class="bg-gray-200 rounded-sm mr-2 text-sm px-3 py-2" placeholder="Search...">
                             </form>
                         </div>
-
-                        <button class="ml-2 mb-3 bg-gray-200 px-6 py-1 text-sm">Filter</button>
                     </div>
 
-                    <div class="shorting mt-3">
+                    <div class="shorting ">
                         <div class="form">
                             <select v-model="form.shorting" @change="shorting" name="shorting" id="shorting">
                                 <option value="" hidden selected>Sort by</option>
@@ -37,7 +35,7 @@
 
             <div class="posts">
                 <div v-if="posts.data.length"
-                    class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10 mx-20">
+                    class="grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-10 shop py-10">
                     <div v-for="post in posts.data" :key="post.id" class="">
                         <div class="mb-2">
                             <div
@@ -137,3 +135,9 @@
         },
     }
 </script>
+
+<style scoped>
+.filter-btn{
+    height: 37px;
+}
+</style>

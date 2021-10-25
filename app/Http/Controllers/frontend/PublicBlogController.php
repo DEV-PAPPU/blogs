@@ -11,7 +11,7 @@ class PublicBlogController extends Controller
     public function All_Posts()
     {
         //Status 0 == publish
-        $posts = Post::with('category')->where('status', 0)->latest()->paginate('4');
+        $posts = Post::with('category')->where('status', 0)->latest()->paginate('8');
         return response()->json($posts, 200);
     }
 

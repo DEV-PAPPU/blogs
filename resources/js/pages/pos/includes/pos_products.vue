@@ -251,7 +251,12 @@ import adduserfrom from '../../pos/includes/adduser.vue'
           decrement(product){
                this.post_list.find((item) => {
                if( item.product_id === product.product_id){
-                   item.qty--
+                   if(item.qty == '1'){
+                       alert('minimum 1 qty required')
+                   }
+                   else{
+                       item.qty--
+                   }
                 }
                 })
           },

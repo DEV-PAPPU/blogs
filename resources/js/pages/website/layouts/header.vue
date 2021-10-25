@@ -10,20 +10,6 @@
             </div>
 
 
-            <!-- <div class="search-box">
-                <button @click="search()" class="btn-search"><i class="fas fa-search"></i></button>
-                <input type="text" v-model="form.text" name="text" class="input-search" placeholder="Type to Search...">
-            </div> -->
-
-            <!-- <div class="form">
-                <form  @submit.prevent="search">
-                    <input type="text" v-model="form.text" name="text" class="rounded-sm mr-2 text-sm px-1" placeholder="Search...">
-                <button type="submit"  class=" text-white text-sm">search</button>
-                </form>
-            </div> -->
-
-            <!-- Menu itesms div-->
-
             <div class="menu-items list-none">
 
                 <div class="phone-menu">
@@ -35,25 +21,10 @@
                     <li>
                         <router-link :to="{name: 'home'}">Home</router-link>
                     </li>
-                    <li>
-                        <a href="#service"> <i class="fab fa-app-store-ios header-icons"></i> <span> Services</span></a>
-                    </li>
-                    <li>
-                        <a href="#"> <i class="fa fa-book header-icons"></i> <span>Portfolio</span> </a>
-                    </li>
+
                     <li>
                         <router-link :to="{name: 'public-post'}">Blogs</router-link>
                     </li>
-                    <li>
-                        <a href="#about"> <i class="fa fa-address-book header-icons"></i> <span>About</span> </a>
-                    </li>
-
-                    <li>
-                        <a href="#contact"> <i class="fa fa-address-book header-icons"></i> <span>Contact</span> </a>
-                    </li>
-                    <li>
-
-                    <!-- real time hide show with vuex -->
                     <li>
                         <div class="auth-header">
                             <div class="authenticated" v-if="auth == true">
@@ -66,6 +37,10 @@
                                 <router-link :to="{name: 'singing'}">Log in</router-link>
                         </div>
                         </div>
+                    </li>
+
+                    <li>
+                      <a href="https://blog.devpappu.com/admin" target="_blank">Backend</a>
                     </li>
 
                 </nav>

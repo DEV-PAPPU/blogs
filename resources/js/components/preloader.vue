@@ -1,13 +1,6 @@
 <template>
-    <div class="container loader">
-          <div class="loader">
-        <div class="box">
-            <div class="circle"></div>
-        </div>
-        <div class="box">
-            <div class="circle"></div>
-        </div>
-    </div>
+    <div class="mx-auto flex mt-40  loader">
+        <div class="lds-ring mx-auto"><div></div><div></div><div></div><div></div></div>
     </div>
 </template>
 
@@ -20,79 +13,41 @@
 </script>
 
 <style scoped>
-
-.container.loader {
-    margin: 120px 80px ;
-    margin-left: 600px;
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
-
-    .loader{
-        width: 160px;
-        height: 160px;
-        margin: 0 auto;
-        position: relative;
-    }
-    .loader .box{
-        background-color: rgba(0,0,0,0.04);
-        border: 4px solid transparent;
-        border-left: 4px solid #26ff00;
-        border-top: 4px solid #26ff00;
-        border-radius: 50%;
-        box-shadow: 0 0 15px rgba(0,0,0,0.03);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        animation: animate1 3s linear infinite;
-    }
-    .loader .box:nth-of-type(2){
-        background-color: rgba(0, 0, 0, 0.025);
-        border: 4px solid transparent;
-        border-right: 4px solid #03a9f4;
-        border-bottom: 4px solid #03a9f4;
-        top: 30px;
-        left: 30px;
-        right: 30px;
-        bottom: 30px;
-        animation: animate1 3s reverse linear infinite;
-    }
-    .loader .box .circle{
-        transform-origin: left;
-        position: absolute;
-        top: calc(50% - 1px);
-        left: 50%;
-        width: 50%;
-        height: 2px;
-    }
-    .loader .box .circle,
-    .loader .box:nth-of-type(2) .circle{
-        transform: rotate(-45deg);
-    }
-    .loader .box .circle:before{
-        content: '';
-        background: #fff;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        position: absolute;
-        top: -4px;
-        right: -6px;
-    }
-    .loader .box .circle:before{
-        background: #26ff00;
-        box-shadow: 0 0 20px #26ff00, 0 0 40px #26ff00, 0 0 60px #26ff00, 0 0 80px #26ff00,
-                    0 0 100px #26ff00, 0 0 0 5px rgba(255, 255, 0, .1);
-    }
-    .loader .box:nth-of-type(2) .circle:before{
-        background: #2db9ff;
-        box-shadow: 0 0 20px #2db9ff, 0 0 40px #2db9ff, 0 0 60px #2db9ff, 0 0 80px #2db9ff,
-                    0 0 100px #2db9ff, 0 0 0 5px rgba(3, 169, 244, .1);
-    }
-    @keyframes animate1{
-        0%{ transform: rotate(0deg); }
-        100%{ transform: rotate(360deg); }
-    }
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid rgb(30, 109, 228);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: rgb(57, 163, 3) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 </style>
 

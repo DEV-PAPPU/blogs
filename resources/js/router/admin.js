@@ -25,6 +25,8 @@ import Task_Show from '../pages/admin/task/show.vue'
 
 import Task_Draggable from '../pages/admin/task/draggable.vue'
 
+import Search from '../components/form.vue'
+
 export default  [
 
     {
@@ -111,6 +113,12 @@ export default  [
                 path: '/admin/task/draggable',
                 component: Task_Draggable,
                 name: 'task-draggable',
+            },
+
+            {
+                path: '/admin/paypal',
+                component: Search,
+                name: 'paypal',
             },
 
 ]
